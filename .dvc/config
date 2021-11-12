@@ -1,0 +1,4 @@
+[core]
+    remote = internal-ssh
+['remote "internal-ssh"']
+    url = ssh://euryserver/homeEury/Bigdata/dvc-remote
