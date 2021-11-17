@@ -1,0 +1,12 @@
+BGSubgroup: {}
+Microbadge: {}
+Rating: {}
+Subgroup: {}
+UserMicro: {}
+BoardGame:
+  description: Board Game from BGG
+Person: {}
+User:
+  parents:
+  - Person
+  description: BGG User

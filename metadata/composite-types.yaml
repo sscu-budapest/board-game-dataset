@@ -1,0 +1,32 @@
+OwnershipType:
+  features:
+  - name: owned
+    dtype: int
+  - name: trading
+    dtype: int
+  - name: wanting
+    dtype: int
+  - name: wishing
+    dtype: int
+PlayerNumberType:
+  features:
+  - name: minplayers
+    dtype: int
+  - name: maxplayers
+    dtype: int
+RatingInfoType:
+  features:
+  - name: num_ratings
+    dtype: int
+  - name: avg_rating
+    dtype: float
+  - name: bgg_rating
+    dtype: float
+  - name: stddev_rating
+    dtype: float
+WeightType:
+  features:
+  - name: num_weights
+    dtype: int
+  - name: average_weight
+    dtype: float
