@@ -6,6 +6,7 @@ from sscutils import (
     IndexBase,
     ScruTable,
     TableFeaturesBase,
+    Nullable
 )
 
 class BoardGame(BaseEntity):
@@ -32,8 +33,7 @@ class MicrobadgeIndex(IndexBase):
     micro_id = int
 
 class RatingIndex(IndexBase):
-    bg_id = BoardGameIndex
-    user_name = UserIndex
+    rating_id = int
 
 class PlayerNumberType(CompositeTypeBase):
     minplayers = int
@@ -61,6 +61,7 @@ class BoardGameFeatures(TableFeaturesBase):
     url = str
     release_year = int
     description = str
+    num_comments = int
     player_num = PlayerNumberType
     rating_info = RatingInfoType
     weight = WeightType
@@ -68,13 +69,15 @@ class BoardGameFeatures(TableFeaturesBase):
 
 class UserFeatures(TableFeaturesBase):
     user_url = str
-    country = str
+    country = Nullable(str)
 
 class RatingFeatures(TableFeaturesBase):
-    rating = float
-    date = dt.datetime
-    comment_text = str
-    summary_item_meta = str
+    bg_id = BoardGameIndex
+    user_name = UserIndex
+    rating = Nullable(float)
+    date = Nullable(dt.datetime)
+    comment_text = Nullable(str)
+    summary_item_meta = Nullable(str)
 
 class SubgroupFeatures(TableFeaturesBase):
     subgroup_type = str
@@ -88,12 +91,12 @@ class MicrobadgeFeatures(TableFeaturesBase):
 
 class UserMicroFeatures(TableFeaturesBase):
     user_id = UserIndex
-    microbadge = MicrobadgeIndex
+    micro_id = MicrobadgeIndex
 
 class BGSubgroupFeatures(TableFeaturesBase):
     bg_id = BoardGameIndex
     subgroup_id = SubgroupIndex
-    value = str
+    value = Nullable(str)
 
 boardgame_table = ScruTable(BoardGameFeatures, BoardGameIndex, subject_of_records= BoardGame)
 user_table = ScruTable(UserFeatures, UserIndex, subject_of_records= User)

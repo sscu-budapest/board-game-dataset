@@ -1,12 +1,3 @@
-b_g_subgroup:
-  subject_of_records: BGSubgroup
-  features:
-  - prefix: bg_id
-    table: board_game
-  - prefix: subgroup_id
-    table: subgroup
-  - name: value
-    dtype: str
 board_game:
   subject_of_records: BoardGame
   features:
@@ -20,6 +11,8 @@ board_game:
     dtype: int
   - name: description
     dtype: str
+  - name: num_comments
+    dtype: int
   - prefix: player_num
     dtype: PlayerNumberType
   - prefix: rating_info
@@ -31,34 +24,6 @@ board_game:
   index:
   - name: bg_id
     dtype: int
-microbadge:
-  subject_of_records: Microbadge
-  features:
-  - name: micro_name
-    dtype: str
-  - name: micro_url
-    dtype: str
-  - name: description
-    dtype: str
-  index:
-  - name: micro_id
-    dtype: int
-rating:
-  subject_of_records: Rating
-  features:
-  - name: rating
-    dtype: float
-  - name: date
-    dtype: datetime
-  - name: comment_text
-    dtype: str
-  - name: summary_item_meta
-    dtype: str
-  index:
-  - prefix: bg_id
-    table: board_game
-  - prefix: user_name
-    table: user
 subgroup:
   subject_of_records: Subgroup
   features:
@@ -71,13 +36,6 @@ subgroup:
   index:
   - name: subgroup_id
     dtype: str
-user_micro:
-  subject_of_records: UserMicro
-  features:
-  - prefix: user_id
-    table: user
-  - prefix: microbadge
-    table: microbadge
 user:
   subject_of_records: User
   features:
@@ -85,6 +43,60 @@ user:
     dtype: str
   - name: country
     dtype: str
+    nullable: true
   index:
   - name: user_id
     dtype: str
+microbadge:
+  subject_of_records: Microbadge
+  features:
+  - name: micro_name
+    dtype: str
+  - name: micro_url
+    dtype: str
+  - name: description
+    dtype: str
+  index:
+  - name: micro_id
+    dtype: int
+user_micro:
+  subject_of_records: UserMicro
+  features:
+  - prefix: user_id
+    table: user
+  - prefix: micro_id
+    table: microbadge
+b_g_subgroup:
+  subject_of_records: BGSubgroup
+  features:
+  - prefix: bg_id
+    table: board_game
+  - prefix: subgroup_id
+    table: subgroup
+  - name: value
+    dtype: str
+    nullable: true
+rating:
+  subject_of_records: Rating
+  features:
+  - prefix: bg_id
+    table: board_game
+  - prefix: user_name
+    table: user
+  - name: rating
+    dtype: float
+    nullable: true
+  - name: date
+    dtype: datetime
+    nullable: true
+  - name: comment_text
+    dtype: str
+    nullable: true
+  - name: summary_item_meta
+    dtype: str
+    nullable: true
+  index:
+  - name: rating_id
+    dtype: int
+
+
